@@ -4,14 +4,13 @@
 {% block menu %}
 <li><a href="{{ url_for('admin.index') }}"><i class="fa fa-list fa-fw"></i>&nbsp; Admin</a></li>
 <ul>
-    <li><a href="{{ url_for('admin.courses') }}"><i class="fa fa-list fa-fw"></i>&nbsp; Fag</a></li>
+    <li><a href="{{ url_for('admin.courses') }}"><i class="fa fa-list fa-fw"></i>&nbsp; Courses</a></li>
 </ul>
 {% endblock %}
 
 {% block content %}
-<h1 class="admin-header">Administrasjonspanel</h1>
 
-<a href="{{ url_for('admin.courses') }}">Fagliste</a>
+<a href="{{ url_for('admin.courses') }}">Course list</a>
 {% endblock %}
 
 {% block js %}

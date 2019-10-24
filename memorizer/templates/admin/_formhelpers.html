@@ -12,7 +12,7 @@
 </div>
 {% endmacro %}
 
-{% macro render_form(form, url=None, new=True, submit_text="Lagre") %}
+{% macro render_form(form, url=None, new=True, submit_text="submit") %}
 <form method="POST" class="form{% if url %} form-admin{% endif %}" {% if url %}data-url="{{ url }}" {% if new %}data-new{% endif %}{% endif %}>
     {{ form.hidden_tag() }}
     {% for field in form %}

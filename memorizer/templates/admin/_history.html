@@ -1,5 +1,5 @@
 {% macro version_history(versions) %}
-<a href="#" class="admin-button collapse" data-target="#transactions"><i class="fa fa-fw fa-history"></i> Vis historikk</a>
+<a href="#" class="admin-button collapse" data-target="#transactions"><i class="fa fa-fw fa-history"></i> view history</a>
 <ul id="transactions" class="collapsed">
     {% for version in versions|reverse %}
     <li>
@@ -12,9 +12,9 @@
         <table>
             <thead>
                 <tr>
-                    <th>Felt</th>
-                    <th>Før</th>
-                    <th>Etter</th>
+                    <th>field</th>
+                    <th>before</th>
+                    <th>after</th>
                 </tr>
             </thead>
             <tbody>

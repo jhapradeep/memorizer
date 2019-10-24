@@ -2,14 +2,13 @@
 {% extends "admin/admin.html" %}
 
 {% block content %}
-<h1 class="admin-header">Fag-administrering</h1>
 
-<a href="#" class="collapse admin-button" data-target="#add-course"><i class="fa fa-fw fa-plus"></i> Legg til nytt fag</a>
+<a href="#" class="collapse admin-button" data-target="#add-course"><i class="fa fa-fw fa-plus"></i> add new subject</a>
 <div id="add-course" class="collapsed">
 {{ render_form(form, '/api/courses/') }}
 </div>
 
-<a href="#" class="admin-button collapse" data-target="#import"><i class="fa fa-fw fa-list"></i> Importer JSON</a>
+<a href="#" class="admin-button collapse" data-target="#import"><i class="fa fa-fw fa-list"></i> import JSON</a>
 <div id="import" class="collapsed">
 <form method="POST" class="form">
 <textarea name="json" required cols="100" rows="30">
@@ -18,6 +17,6 @@
 </form>
 </div>
 
-<h2>Fag</h2>
+<h2>subject</h2>
 <ul class="admin-list" data-api="/api/courses/" data-url="/admin/course/"></ul>
 {% endblock %}
