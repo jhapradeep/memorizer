@@ -14,8 +14,8 @@ class Course(db.Model):
     __tablename__ = 'course'
     __mapper_args__ = {'order_by': 'code'}
     id = db.Column(db.Integer, primary_key=True)
-    code = db.Column(db.String(80), unique=True, nullable=False, info={'label': 'Emnekode'})
-    name = db.Column(db.String(120), nullable=False, info={'label': 'Navn'})
+    code = db.Column(db.String(80), unique=True, nullable=False, info={'label': 'course code'})
+    name = db.Column(db.String(120), nullable=False, info={'label': 'name'})
     exams = db.relationship('Exam', backref='course')
     questions = association_proxy('exams', 'questions')
 
@@ -61,13 +61,13 @@ class Exam(db.Model):
     __tablename__ = 'exam'
     __mapper_args__ = {'order_by': 'name'}
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, info={'label': 'Navn'})
+    name = db.Column(db.String, info={'label': 'name'})
     course_id = db.Column(db.Integer, db.ForeignKey('course.id'))
     questions = db.relationship('Question', backref='exam')
     multiple_correct = db.Column(db.Boolean, server_default=literal(False), nullable=False, default=False, info={
-                                 'label': 'Flere korrekte svar per spørsmål'})
+                                 'label': 'more correct answers per question'})
     hidden = db.Column(db.Boolean, server_default=literal(False), nullable=False, default=False, info={
-                                 'label': 'Skjul', 'admin': True})
+                                 'label': 'hide', 'admin': True})
 
     def __init__(self, name=None, course_id=None, multiple_correct=False):
         self.name = name
@@ -113,21 +113,21 @@ class Question(db.Model):
     MULTIPLE = '1'
     BOOLEAN = '2'
     TYPES = [
-        (MULTIPLE, 'Flervalg'),
-        (BOOLEAN, 'Ja/Nei')
+        (MULTIPLE, 'multiple choice'),
+        (BOOLEAN, 'yes/no')
     ]
     __tablename__ = 'question'
     __mapper_args__ = {'order_by': 'id'}
     id = db.Column(db.Integer, primary_key=True)
-    text = db.Column(db.String, info={'label': 'Oppgavetekst'})
-    image = db.Column(db.String, info={'label': 'Bilde'})
+    text = db.Column(db.String, info={'label': 'tast text'})
+    image = db.Column(db.String, info={'label': 'picture'})
     exam_id = db.Column(db.Integer, db.ForeignKey('exam.id'))
     course = association_proxy('exam', 'course')
-    reason = db.Column(db.String, info={'label': 'Forklaring'})
+    reason = db.Column(db.String, info={'label': 'explanation'})
 
-    type = db.Column(ChoiceType(TYPES), info={'label': 'Spørsmålstype'})
+    type = db.Column(ChoiceType(TYPES), info={'label': 'question type'})
     # Boolean question
-    correct = db.Column(db.Boolean, info={'label': 'Korrekt'})
+    correct = db.Column(db.Boolean, info={'label': 'correct'})
     # Alternative question
     alternatives = db.relationship('Alternative', backref='question', order_by='Alternative.id')
 
@@ -194,8 +194,8 @@ class Alternative(db.Model):
     __mapper_args__ = {'order_by': 'id'}
 
     id = db.Column(db.Integer, primary_key=True)
-    text = db.Column(db.String, info={'label': 'Tekst'})
-    correct = db.Column(db.Boolean, info={'label': 'Korrekt'})
+    text = db.Column(db.String, info={'label': 'text'})
+    correct = db.Column(db.Boolean, info={'label': 'correct'})
     question_id = db.Column(db.Integer, db.ForeignKey('question.id'))
 
     def __init__(self, text=None, correct=None, question_id=None):
@@ -220,9 +220,9 @@ class User(db.Model):
     __mapper_args__ = {'order_by': 'id'}
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, info={'label': 'Navn'})
-    username = db.Column(db.String, unique=True, info={'label': 'Brukernavn'})
-    password = db.Column(PasswordType(schemes=['pbkdf2_sha512']), info={'label': 'Passord'})
+    name = db.Column(db.String, info={'label': 'name'})
+    username = db.Column(db.String, unique=True, info={'label': 'username'})
+    password = db.Column(PasswordType(schemes=['pbkdf2_sha512']), info={'label': 'password'})
     registered = db.Column(db.Boolean)
     admin = db.Column(db.Boolean)
 
