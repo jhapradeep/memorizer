@@ -2,9 +2,8 @@
 {% extends "admin/admin.html" %}
 
 {% block content %}
-<h1>Logg inn</h1>
 
-{{ render_form(form, submit_text="Logg inn") }}
+{{ render_form(form, submit_text="login") }}
 
-<a class="admin-register" href="{{ url_for('quiz.register') }}">Eller registrer deg</a>
+<a class="admin-register" href="{{ url_for('quiz.register') }}">get registered</a>
 {% endblock %}
