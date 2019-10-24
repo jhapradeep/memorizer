@@ -1,13 +1,13 @@
 {% extends "quiz/quiz.html" %}
 {% block content %}
-<h1>Emner</h1>
-<input type="text" id="search_courses" placeholder="Søk..." autofocus>
+<p style="margin-bottom:1cm;"></p>
+<input type="text" id="search_courses" placeholder="search" autofocus>
 <ul class="courses">
 {% for course in courses %}
     <li data-text="{{ course.code }} {{ course.name }}">
         <a href="{{ url_for('quiz.course', course=course.code) }}">
             <div class="code">{{ course.code }}</div>
-            <div class="count">{{ course.question_count }} <small>spørsmål</small></div>
+            <div class="count">{{ course.question_count }} <small>question</small></div>
             <div class="name">{{ course.name }}</div>
         </a>
     </li>
