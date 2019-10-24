@@ -25,13 +25,13 @@ def courses():
             try:
                 questions = json.loads(exam_json)
                 importer.import_exam(questions)
-                flash('Alle spørsmålene ble importert', 'success')
+                flash('all questions were imported', 'success')
             except json.decoder.JSONDecodeError:
-                flash('Ugyldig JSON', 'error')
+                flash('void JSON', 'error')
             except importer.ValidationError as e:
                 flash(e, 'error')
         else:
-            flash('Tom JSON', 'error')
+            flash('empty JSON', 'error')
 
     context = dict(courses=models.Course.query.all())
     form = CourseForm()

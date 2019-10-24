@@ -27,7 +27,7 @@ class Register(TemplateMethodView):
     def get(self):
         user = get_user()
         if user.registered:
-            flash('Du er allerede logget inn', 'error')
+            flash('you are already logged in', 'error')
             return redirect(url_for('quiz.main'))
         self.form = forms.RegisterForm()
 
@@ -38,7 +38,7 @@ class Register(TemplateMethodView):
         form = forms.RegisterForm(request.form)
         if form.validate():
             self.save_user(form)
-            flash('Registrering fullført', 'success')
+            flash('registration successful', 'success')
             return redirect(url_for('quiz.main'))
         self.form = form
 
@@ -59,7 +59,7 @@ quiz.add_url_rule('/register/', view_func=Register.as_view('register'))
 def login():
     user = get_user()
     if user.registered:
-        flash('Du er allerede logget inn', 'error')
+        flash('you are already logged in', 'error')
         return redirect(url_for('quiz.main'))
     if request.method == 'POST':
         form = forms.LoginForm(request.form)
@@ -182,9 +182,9 @@ class QuestionMixin:
             if not models.Stats.answered(user, self.question):
                 self.save_answer(user, self.success)
             elif self.success:
-                flash('Du har allerede svart på dette spørsmålet så du får ikke noe poeng. :-)', 'info')
+                flash('you have already answered this question so you will not get any points', 'info')
         else:
-            flash('Blankt svar', 'error')
+            flash('blank answer', 'error')
         # Preserving order on submit
         ordering = request.form.get('order')
         if ordering:
