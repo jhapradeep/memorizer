@@ -119,7 +119,7 @@ class Question(db.Model):
     __tablename__ = 'question'
     __mapper_args__ = {'order_by': 'id'}
     id = db.Column(db.Integer, primary_key=True)
-    text = db.Column(db.String, info={'label': 'tast text'})
+    text = db.Column(db.String, info={'label': 'text'})
     image = db.Column(db.String, info={'label': 'picture'})
     exam_id = db.Column(db.Integer, db.ForeignKey('exam.id'))
     course = association_proxy('exam', 'course')

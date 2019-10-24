@@ -16,7 +16,7 @@
     {% if prev_question %}
     <a href="{{ url_for('admin.question', question_id=prev_question.id) }}">previous question</a>
     {% endif %}
-    <a href="{{ url_for('quiz.question_exam', course_code=question.course.code, exam_name=question.exam.name, id=question.index) }}">go to questions</a>
+    <a href="{{ url_for('quiz.question_exam', course_code=question.course.code, exam_name=question.exam.name, id=question.index) }}">go to exam</a>
     {% if next_question %}
     <a href="{{ url_for('admin.question', question_id=next_question.id) }}">next question</a>
     {% endif %}
