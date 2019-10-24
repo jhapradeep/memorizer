@@ -1,0 +1,17 @@
+{
+    "name": "physics0",
+    "code": "Physics",
+    "exam": "exam0",
+    "questions": [
+        {
+            "question": "What is the unit of distance?",
+            "answers": [
+                "meter",
+                "gram",
+                "litre",
+                "second"
+            ],
+            "correct": 0
+        }
+    ]
+}

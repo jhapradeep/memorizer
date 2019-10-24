@@ -1,0 +1,39 @@
+{
+    "name": "math0",
+    "code": "Mathematics",
+    "exam": "exam0",
+    "questions": [
+        {
+            "question": "Which of the following numbers is the smallest?",
+            "answers": [
+                "0",
+                "3",
+                "2",
+                "4"
+            ],
+            "correct": 0
+        },
+        {
+            "question": "What is the maximum number of points at which a straight line and circle can intersect?",
+            "image": "circle.png",
+            "answers": [
+                "0",
+                "1",
+                "2",
+                "3"
+            ],
+            "correct": 2
+        },
+        {
+            "question": "What is the shortest distance between two points called?",
+            "image": "line.gif",
+            "answers": [
+                "straight line",
+                "circle",
+                "parallelogram",
+                "rhombus"
+            ],
+            "correct": 0
+        }
+    ]
+}

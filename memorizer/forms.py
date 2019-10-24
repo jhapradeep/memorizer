@@ -59,15 +59,15 @@ class AlternativeForm(MemorizerForm, BaseModelForm):
 
 
 class RegisterForm(FlaskForm):
-    name = fields.StringField('Navn', [validators.Required()])
-    username = fields.StringField('Brukernavn', [validators.Required()])
-    password = fields.PasswordField('Passord', [
+    name = fields.StringField('name', [validators.Required()])
+    username = fields.StringField('username', [validators.Required()])
+    password = fields.PasswordField('password', [
         validators.Required(),
-        validators.EqualTo('confirm', message='Passordene må være like')
+        validators.EqualTo('confirm', message='passwords must be the same')
     ])
-    confirm = fields.PasswordField('Gjenta passord')
+    confirm = fields.PasswordField('repeat password')
 
 
 class LoginForm(FlaskForm):
-    username = fields.StringField('Brukernavn', [validators.Required()])
-    password = fields.PasswordField('Passord', [validators.Required()])
+    username = fields.StringField('username', [validators.Required()])
+    password = fields.PasswordField('password', [validators.Required()])

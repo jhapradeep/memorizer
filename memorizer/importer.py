@@ -60,33 +60,33 @@ def import_exam(exam_json):
 def validate_exam(exam_json):
     # Exam name and course code has to present
     if 'code' not in exam_json:
-        raise ValidationError('Emnekode mangler')
+        raise ValidationError('subject code missing')
     if type(exam_json['code']) is not str:
-        raise ValidationError('Emnekode må være tekst')
+        raise ValidationError('subject code must be text')
     if len(exam_json['code']) == 0:
-        raise ValidationError('Emnekode kan ikke være tomt')
+        raise ValidationError('subject code cannot be blank')
     if 'name' not in exam_json:
-        raise ValidationError('Emnenavn mangler')
+        raise ValidationError('subject name is missing')
     if type(exam_json['name']) is not str:
-        raise ValidationError('Emnenavn må være tekst')
+        raise ValidationError('subject name must be text')
     if len(exam_json['name']) == 0:
-        raise ValidationError('Emnenavn kan ikke være tomt')
+        raise ValidationError('subject name cannot be empty')
     if 'exam' not in exam_json:
-        raise ValidationError('Eksamensnavn mangler')
+        raise ValidationError('exam name is missing')
     if type(exam_json['exam']) is not str:
-        raise ValidationError('Eksamensnavn må være tekst')
+        raise ValidationError('Exam name must be text')
     if len(exam_json['exam']) == 0:
-        raise ValidationError('Eksamensnavn kan ikke være tomt')
+        raise ValidationError('exam name cannot be empty')
     validate_questions(exam_json)
 
 
 def validate_questions(exam_json):
     if 'questions' not in exam_json:
-        raise ValidationError('Spørsmål mangler')
+        raise ValidationError('questions are missing')
     if type(exam_json['questions']) is not list:
-        raise ValidationError('Spørsmål må være en liste')
+        raise ValidationError('questions must be a list')
     if len(exam_json['questions']) == 0:
-        raise ValidationError('Det må være minst et spørsmål')
+        raise ValidationError('there must be at least one question')
     questions = exam_json['questions']
     for question in questions:
         try:
@@ -98,33 +98,33 @@ def validate_questions(exam_json):
 
 def _validate_alternative(answer):
     if type(answer) is not str:
-        raise ValidationError('Alle alternativer med være tekst')
+        raise ValidationError('all options include text')
     if len(answer) == 0:
-        raise ValidationError('Alternativ kan ikke være tomt')
+        raise ValidationError('alternative cannot be empty')
 
 
 def _validate_correct_answers(answer, length):
     if type(answer) is not int:
-        raise ValidationError('Riktige svar må være integer eller liste med integere')
+        raise ValidationError('Correct answers must be integer or integer list')
     if not (0 <= answer < length):
-        raise ValidationError('Et av de riktige svarene stemmer ikke overens med noen alternativer')
+        raise ValidationError('One of the correct answers does not match any alternatives')
 
 
 def _validate_multiple_answers(question):
     if type(question['answers']) is not list:
-        raise ValidationError('Alternativer må være en liste')
+        raise ValidationError('options must be a list')
     if len(question['answers']) < 2:
-        raise ValidationError('Det må være minst to alternativer')
+        raise ValidationError('there must be at least two options')
     if 'correct' not in question:
-        raise ValidationError('Spørsmål mangler riktig(e) svar')
+        raise ValidationError('questions lack correct answers(s)')
     if type(question['correct']) is int:
         answers = [question['correct']]
     elif type(question['correct']) is list:
         answers = question['correct']
     else:
-        raise ValidationError('Riktig svar må være integer eller en liste med integere')
+        raise ValidationError('the correct answer must be integer or a list of integers')
     if len(answers) == 0:
-        raise ValidationError('Det må være minst et riktig svar')
+        raise ValidationError('there must be at least one correct answer')
     for answer in question['answers']:
         _validate_alternative(answer)
     for answer in answers:
@@ -133,20 +133,20 @@ def _validate_multiple_answers(question):
 
 def validate_question(question):
     if 'question' not in question:
-            raise ValidationError('Spørsmålstekst mangler')
+            raise ValidationError('question text is missing')
     if type(question['question']) is not str:
-        raise ValidationError('Spørsmål må være tekst')
+        raise ValidationError('questions must be text')
     if len(question['question']) == 0:
-        raise ValidationError('Spørsmål kan ikke være tomt')
+        raise ValidationError('questions cannot be empty')
     if 'answers' in question:
         # Multiple answers
         _validate_multiple_answers(question)
     elif 'answer' in question:
         # Boolean answer
         if type(question['answer']) is not bool:
-            raise ValidationError('Svar må være "true" eller "false"')
+            raise ValidationError('answers must be "true" or "false"')
     else:
-        raise ValidationError('Svar mangler')
+        raise ValidationError('answers are missing')
 
 
 class ImportCommand(Command):

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>{% block title %}Memorizer{% endblock %}</title>
+    <title>{% block title %}Inosculation Hub Private Limited{% endblock %}</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% assets "css" %}
@@ -29,10 +29,9 @@
         <ul>
             <li class="menu">
                 <i class="fa fa-fw fa-navicon"></i>
-                <span>Meny</span>
             </li>
             <li class="logo">
-                <a href="{{ url_for('quiz.main') }}">Memorizer</a>
+                <a href="{{ url_for('quiz.main') }}">Inosculation Hub Private Limited</a>
             </li>
         </ul>
         <ul class="right">
@@ -40,11 +39,6 @@
             {% if user.registered %}
                 <i class="fa fa-fw fa-user"></i>
                 {{ user.username }}
-            {% else %}
-                <a href="{{ url_for('quiz.login') }}">
-                    <i class="fa fa-sign-in fa-fw"></i>
-                    Logg inn
-                </a>
             {% endif %}
             </li>
         </ul>
@@ -54,20 +48,20 @@
     <ul>
         {% if user.registered %}
         <li><span><i class="fa fa-user fa-fw"></i>&nbsp; {{ user.username }}</span></li>
-        <li><a href="{{ url_for('quiz.logout') }}"><i class="fa fa-sign-out fa-fw"></i>&nbsp; Logg ut</a></li>
+        <li><a href="{{ url_for('quiz.logout') }}"><i class="fa fa-sign-out fa-fw"></i>&nbsp; logout</a></li>
         {% else %}
-        <li><a href="{{ url_for('quiz.register') }}"><i class="fa fa-user-plus fa-fw"></i>&nbsp; Registrering</a></li>
-        <li><a href="{{ url_for('quiz.login') }}"><i class="fa fa-sign-in fa-fw"></i>&nbsp; Logg inn</a></li>
+        <li><a href="{{ url_for('quiz.register') }}"><i class="fa fa-user-plus fa-fw"></i>&nbsp; register</a></li>
+        <li><a href="{{ url_for('quiz.login') }}"><i class="fa fa-sign-in fa-fw"></i>&nbsp; login</a></li>
         {% endif %}
     </ul>
     <ul>
     {% block menu %}{% endblock %}
     </ul>
-    <ul>
+<!--    <ul>
         <li><a href="{{ url_for('quiz.tips') }}"><i class="fa fa-info-circle fa-fw"></i>&nbsp; Tips</a></li>
         <li><a href="https://github.com/duvholt/memorizer"><i class="fa fa-github fa-fw"></i>&nbsp; Kildekode</a></li>
         <li><a href="mailto:contact@memorizer.io"><i class="fa fa-envelope fa-fw"></i>&nbsp; Kontakt</a></li>
-    </ul>
+    </ul> -->
 </nav>
 <div class="container">
     <ul class="alerts">
