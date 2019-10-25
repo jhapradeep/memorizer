@@ -2,15 +2,15 @@
 {% extends "base.html" %}
 
 {% block menu %}
-<li><a href="{{ url_for('admin.index') }}"><i class="fa fa-list fa-fw"></i>&nbsp; Admin</a></li>
+<li><a href="{{ url_for('admin.index') }}"><i class="fa fa-list fa-fw"></i>&nbsp; admin</a></li>
 <ul>
-    <li><a href="{{ url_for('admin.courses') }}"><i class="fa fa-list fa-fw"></i>&nbsp; Courses</a></li>
+    <li><a href="{{ url_for('admin.courses') }}"><i class="fa fa-list fa-fw"></i>&nbsp; courses</a></li>
 </ul>
 {% endblock %}
 
 {% block content %}
-
-<a href="{{ url_for('admin.courses') }}">Course list</a>
+<p style="margin-bottom:3cm;"></p>
+<a href="{{ url_for('admin.courses') }}">course list</a>
 {% endblock %}
 
 {% block js %}

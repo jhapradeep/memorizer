@@ -2,7 +2,7 @@
 {% extends "admin/admin.html" %}
 
 {% block content %}
-
+<p style="margin-bottom:3cm;"></p>
 <a href="#" class="collapse admin-button" data-target="#add-course"><i class="fa fa-fw fa-plus"></i> add new subject</a>
 <div id="add-course" class="collapsed">
 {{ render_form(form, '/api/courses/') }}
