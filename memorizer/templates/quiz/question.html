@@ -1,5 +1,5 @@
 {% extends "quiz/quiz.html" %}
-{% block title %}#{{ id }} - {{ question.course.code }} {{ question.exam.name }}{% endblock %}
+{% block title %}{{ question.course.code }} {{ question.exam.name }}{% endblock %}
 
 {% macro navlink(id, name, text) %}
     <a href="{{ url_for('quiz.question_exam', course_code=question.course.code, exam_name=exam_name, id=id) }}" id="{{ name }}">{{ text }}</a>
@@ -32,7 +32,6 @@
 <h2>{{ question.course.name }} - <span class="question-exam">{{ question.exam }}</span></h2>
 {% if question is defined %}
 <div class="question">
-    <h3>Spørsmål #{{ id }}</h3>
     {% if question.image %}
     <div class="image">
         {% if question.image.startswith('http://') %}
@@ -58,7 +57,7 @@
         </div>
         {% endfor %}
         {% else %}
-        {% for bool_val, val, label in [(True, "true", "Ja"), (False, "false", "Nei")] %}
+        {% for bool_val, val, label in [(True, "true", "yes"), (False, "false", "no")] %}
         <div class="radio {% if val == request.form.answer %}{{ 'success' if success else 'error' }}{% endif %}">
             <label>
                 <input type="radio" name="answer" value="{{ val }}">
@@ -70,40 +69,40 @@
         </div>
         {% endfor %}
         {% endif %}
-        <button type="submit">Svar</button>
+        <button type="submit">submit</button>
     </form>
     {% if answered and question.reason %}
     <div class="alert reason">
-        <b>Forklaring</b>:
+        <b>explanation</b>:
         {{ question.reason }}
     </div>
     {% endif %}
 </div>
 {% endif %}
 <div class="navigation">
-{{ navlink(prev, 'prev', 'Forrige') }}
-{{ navlink(random, 'random', 'Tilfeldig') }}
-{{ navlink(next, 'next', 'Neste') }}
+{{ navlink(prev, 'prev', 'previous') }}
+{{ navlink(random, 'random', 'random') }}
+{{ navlink(next, 'next', 'next') }}
 </div>
-<p><a id="question-error" href="{{ url_for('admin.question', question_id=question.id) }}">Funnet en feil? Rediger spørsmålet</a></p>
+<p><a id="question-error" href="{{ url_for('admin.question', question_id=question.id) }}">edit</a></p>
 </div>
 <div class="stats-container">
     <div class="stats">
         <div class="grade">{{ grade(stats.points, stats.total ) }}</div>
         <div class="points">
-            Poeng: {{ stats.points }}/{{ stats.total }}
+            point: {{ stats.points }}/{{ stats.total }}
             {% if stats.points == 4 and stats.total == 20 %}
             <blaze>blaze it</blaze>
             {% endif %}
             ({{ percentage(stats.points, stats.total) }}%)
         </div>
-        <div class="combo">Combo: {{ stats.combo }}{% for _ in range(stats.combo // 10) %}<i class="fa fa-trophy"></i>{% endfor %}</div>
-        <div class="progress">Spørsmål: {{ stats.total }}/{{ stats.max }}</div>
-        <div class="reset"><a href="{{ reset_url }}"><i class="fa fa-undo"></i> Nullstill poeng</a></div>
+        <div class="combo">combo: {{ stats.combo }}{% for _ in range(stats.combo // 10) %}<i class="fa fa-trophy"></i>{% endfor %}</div>
+        <div class="progress">progress: {{ stats.total }}/{{ stats.max }}</div>
+        <div class="reset"><a href="{{ reset_url }}"><i class="fa fa-undo"></i> reset</a></div>
     </div>
 </div>
 <script type="scoop" id="question_template">
-<h3>Spørsmål #{$ id }</h3>
+
 {? if question.image }
 <div class="image">
     <img src="{_ question.image }">
@@ -130,21 +129,21 @@
         </div>
         {+}
     {?}
-    <button type="submit">Svar</button>
+    <button type="submit">submit</button>
 </form>
 </script>
 <script type="scoop" id="stats_template">
 <div class="grade">{$ stats.grade }</div>
 <div class="points">
-    Poeng: {$ stats.points }/{$ stats.total }
+    point: {$ stats.points }/{$ stats.total }
     {? if stats.points == 4 && stats.total == 20 }
     <blaze>blaze it</blaze>
     {?}
     ({$ stats.percentage }%)
 </div>
-<div class="combo">Combo: {$ stats.combo }{+ _ in new Array(Math.floor(stats.combo / 10)) }<i class="fa fa-trophy"></i>{+}</div>
-<div class="progress">Spørsmål: {$ stats.total }/{$ stats.max }</div>
-<div class="reset"><a href="{{ reset_url }}"><i class="fa fa-undo"></i> Nullstill poeng</a></div>
+<div class="combo">combo: {$ stats.combo }{+ _ in new Array(Math.floor(stats.combo / 10)) }<i class="fa fa-trophy"></i>{+}</div>
+<div class="progress">progress: {$ stats.total }/{$ stats.max }</div>
+<div class="reset"><a href="{{ reset_url }}"><i class="fa fa-undo"></i> reset</a></div>
 </script>
 {% endblock %}
 
