@@ -48,7 +48,7 @@
                     if(this.list !== undefined) {
                         this.list.update();
                     }
-                    Alert('Fullført', 'success');
+                    Alert('finished', 'success');
                 }
                 else {
                     // Show valiations status
@@ -78,7 +78,7 @@
                 }
             }.bind(this),
             error: function() {
-                Alert('Noe gikk forferdelig galt', 'error');
+                Alert('something went terribly wrong', 'error');
             }
         });
     };
@@ -141,7 +141,7 @@
             var del = document.createElement('a');
             del.href = '#';
             del.className = 'delete';
-            del.innerHTML = '<i class="fa fa-times fa-fw"></i> Slett';
+            del.innerHTML = '<i class="fa fa-times fa-fw"></i> delete';
             del.id = id;
             del.onclick = this.deleteObject();
             li.appendChild(del);
@@ -156,15 +156,15 @@
             Ajax({url: that.api + this.id, method: 'DELETE'}, {
                 success: function(data) {
                     if(data.errors.length > 0) {
-                        Alert('Sletting feilet', 'error');
+                        Alert('deletion failed', 'error');
                     }
                     else {
-                        Alert('Slettet', 'success');
+                        Alert('deleted', 'success');
                         that.update();
                     }
                 },
                 error: function(data) {
-                    Alert('Sletting feilet', 'error');
+                    Alert('deletion failed', 'error');
                 }
             });
         };

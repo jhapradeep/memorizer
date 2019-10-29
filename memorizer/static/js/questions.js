@@ -145,7 +145,7 @@ Questions.prototype.answer = function(e) {
         this.answerApi.submit(this.currentQuestion().id, values, function(data) {
             this.updateStats();
             if(data.success === false) {
-                Alert('Du har allerede svart på dette spørsmålet så du får ikke noe poeng. :-)', 'info');
+                Alert('You have already answered this question so you will not get any points.', 'info');
             }
         }.bind(this));
     }

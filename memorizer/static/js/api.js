@@ -8,7 +8,7 @@ API.prototype.send = function(filters, callback, method) {
             callback(data);
         },
         error: function(data) {
-            Alert('Klarte ikke hente data. Prøv å laste siden på nytt.', 'error');
+            Alert('Could not retrieve data. Please try reloading the page.', 'error');
         }
     });
 };
