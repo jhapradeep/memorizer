@@ -14,9 +14,9 @@ class AdminCommand(Command):
     def run(self, username):
         user = models.User.query.filter_by(username=username).first()
         if not user:
-            print(f"Did not find a user with username {username}")
+            print("Did not find a user with username {username}")
             return
         user.admin = True
         db.session.add(user)
         db.session.commit()
-        print(f"{username} is now an administrator")
+        print("{username} is now an administrator")
